@@ -1,2 +1,2 @@
-./config/.env.development
-./config/.env.production
+**/.env*
+node_modules/
