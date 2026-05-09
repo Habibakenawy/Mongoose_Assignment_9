@@ -86,3 +86,13 @@ export const login = async (inputs) => {
     return token;
     
 };
+
+export const updateUser = async (inputs) => {
+  const { email, Password } = inputs;
+  const found = await userModel.findOne({ email });
+  if (!found || !(await bcrypt.compare(Password, found.Password))) {
+        throw UnauthorizedException({ message: "Invalid email or password" });
+    }
+ 
+};
+
