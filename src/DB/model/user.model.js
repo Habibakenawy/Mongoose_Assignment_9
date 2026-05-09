@@ -26,7 +26,8 @@ const userSchema = new mongoose.Schema(
             max:60
         }
     },{
-        collection:"UserData"
+        collection:"UserData",
+        optimisticConcurrency: true
     }
 )
 

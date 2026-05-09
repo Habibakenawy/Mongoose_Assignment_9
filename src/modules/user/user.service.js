@@ -80,19 +80,38 @@ export const login = async (inputs) => {
   //   return UnauthorizedException({ message: "Invalid email or password" });
   // }
   if (!found || !(await bcrypt.compare(Password, found.Password))) {
-        throw UnauthorizedException({ message: "Invalid email or password" });
-    }
-    const token = jwt.sign({userId:found._id},process.env.JWT_SECRET,{expiresIn:"1h"})
-    return token;
-    
+    throw UnauthorizedException({ message: "Invalid email or password" });
+  }
+  const token = jwt.sign({ userId: found._id }, process.env.JWT_SECRET, {
+    expiresIn: "1h",
+  });
+  return token;
 };
 
-export const updateUser = async (inputs) => {
-  const { email, Password } = inputs;
-  const found = await userModel.findOne({ email });
-  if (!found || !(await bcrypt.compare(Password, found.Password))) {
-        throw UnauthorizedException({ message: "Invalid email or password" });
+export const updateUser = async (id, updatedData) => {
+  const session = await mongoose.startSession();
+  session.startTransaction();
+  try {
+    const { email } = updatedData;
+    if (email) {
+      const found = await userModel.findOne({ email });
+      if (found) {
+        throw  ConflictException({ message: "Email already exists" });
+      }
     }
- 
+    const updatedUser = await userModel
+      .findByIdAndUpdate(
+        id,
+        { $set: updatedData, $inc:{__v:1} },
+        { new: true, runValidators: true },
+      )
+      .select("-Password");
+    if (!updatedUser) throw NotFoundException({ message: "User not found" });
+    await session.commitTransaction();
+    return updatedUser;
+  } catch (err) {
+    await session.abortTransaction();
+    await session.endSession();
+    throw err;
+  }
 };
-

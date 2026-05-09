@@ -1,6 +1,7 @@
 import { Router } from "express";
 import { successResponse } from "../../common/utils/response/success.response.js";
 import { signup,login,updateUser } from "./user.service.js";
+import { authMiddleware } from "../../middleware/auth.middleware.js";
 const router=Router()
 
 
@@ -14,8 +15,8 @@ router.get("/login",async (req,res,next)=>{
     return successResponse({res,message:"Login successful",status:200,data:{result}});
 })
 
-router.patch("/",async (req,res,next)=>{
-    const result= await updateUser(req.body);
+router.patch("/",authMiddleware,async (req,res,next)=>{
+    const result= await updateUser(req.user.userId,req.body);
     return successResponse({res,message:"User Updated",status:200,data:{result}});
 })
 export default router
