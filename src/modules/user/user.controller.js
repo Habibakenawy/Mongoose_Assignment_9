@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { successResponse } from "../../common/utils/response/success.response.js";
-import { signup } from "./user.service.js";
+import { signup,login } from "./user.service.js";
 //import { profile } from "./user.service.js";
 const router=Router()
 
@@ -12,5 +12,11 @@ router.get("/" , (req,res,next)=>{
 router.post("/signup",async (req,res,next)=>{
     const result= await signup(req.body);
     return successResponse({res,message:"User added successfully.",status:201,data:{result}});
+})
+
+
+router.get("/login",async (req,res,next)=>{
+    const result= await login(req.body);
+    return successResponse({res,message:"Login successful",status:200,data:{result}});
 })
 export default router

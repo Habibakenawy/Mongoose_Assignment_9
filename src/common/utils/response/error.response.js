@@ -21,3 +21,7 @@ export const ConflictException = ({message = "Conflict",extra}) =>{
 export const NotFoundException = ({message = "NotFound",extra}) =>{
     return ErrorException({message,status:404,extra})
 }
+
+export const UnauthorizedException = ({message = "Unauthorized",extra}) =>{
+    return ErrorException({message,status:401,extra})
+}

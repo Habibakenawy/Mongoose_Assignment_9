@@ -1,7 +1,7 @@
 import bcrypt from "bcrypt";
 import mongoose from "mongoose";
 import {userModel} from "../../DB/model/index.js"
-import {ConflictException} from "../../common/utils/index.js"
+import {ConflictException, NotFoundException,UnauthorizedException} from "../../common/utils/index.js"
 import crypto  from "crypto"
 import { config } from 'dotenv'
 
@@ -20,7 +20,7 @@ export const signup = async (inputs) =>{
     try{
         const found = await userModel.find({email})
         if(found.length!=0){
-         return ConflictException({ message: "Email already exists" })
+         throw new ConflictException({ message: "Email already exists" })
         }
    const user = await userModel.create({name,email,Password:hashedPasswrod,Phone:encryptedData,iv_phone:iv,age})
    await session.commitTransaction();
@@ -51,4 +51,19 @@ function decrypt(encryptedData, ivHex) {
   let decrypted = decipher.update(encryptedData, "hex", "utf8");
   decrypted += decipher.final("utf8");
   return decrypted;
+}
+
+export const login = async (inputs) =>{ //msh m7taga transaction 3lshan msh b create data  // ana ba7afz 3la el integrity of data bel transaction
+    const {email,Password}= inputs;
+        const found = await userModel.findOne({email}) 
+        if(found){
+        const hashedPassword = found.Password;
+        const isMatch = await bcrypt.compare(Password, hashedPassword);
+        if(!isMatch)
+        return UnauthorizedException({ message: "Invalid email or password" })
+        return found;
+        }else{
+       return UnauthorizedException({ message: "Invalid email or password" }) 
+      
+        }  
 }
