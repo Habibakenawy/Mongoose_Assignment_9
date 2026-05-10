@@ -131,3 +131,11 @@ export const deleteUser = async (id) => {
     throw err;
   }
 };
+
+export const getUserData = async (id) => {
+  const found = await userModel.findById(id)
+  if (!found) {
+    throw NotFoundException({ message: "User Not Found" });
+  }
+  return found;
+};
