@@ -14,7 +14,7 @@ const notesSchema = new mongoose.Schema(
         },
         content:{
             type:String,
-            required:[true,"content in mandatory"]
+            required:[true,"content is mandatory"]
         },
         userId:{
             type:mongoose.Schema.Types.ObjectId,ref:'User'
@@ -26,4 +26,4 @@ const notesSchema = new mongoose.Schema(
     }
 )
 
-export const userModel = mongoose.models.Notes || mongoose.model("Notes",notesSchema)
+export const notesModel = mongoose.models.Notes || mongoose.model("Notes",notesSchema)

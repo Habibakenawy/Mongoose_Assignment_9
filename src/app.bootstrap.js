@@ -1,7 +1,7 @@
 
 import { NODE_ENV, port } from '../config/config.service.js'
 import { authenticateDB } from './DB/connection.db.js'
-import { authRouter, userRouter } from './modules/index.js'
+import { authRouter, userRouter,notesRouter } from './modules/index.js'
 import { globalErrorHandler } from './common/utils/index.js'
 import express from 'express'
 
@@ -14,6 +14,7 @@ async function bootstrap() {
     //application routing
     app.get('/', (req, res) => res.send('Hello World!'))
     app.use('/users', userRouter)
+    app.use('/notes',notesRouter)
 
 
     //invalid routing
