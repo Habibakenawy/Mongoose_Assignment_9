@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { successResponse } from "../../common/utils/response/success.response.js";
-import { signup,login,updateUser } from "./user.service.js";
+import { signup,login,updateUser,deleteUser } from "./user.service.js";
 import { authMiddleware } from "../../middleware/auth.middleware.js";
 const router=Router()
 
@@ -18,5 +18,10 @@ router.get("/login",async (req,res,next)=>{
 router.patch("/",authMiddleware,async (req,res,next)=>{
     const result= await updateUser(req.user.userId,req.body);
     return successResponse({res,message:"User Updated",status:200,data:{result}});
+})
+
+router.delete("/",authMiddleware,async (req,res,next)=>{
+    const result= await deleteUser(req.user.userId);
+    return successResponse({res,message:"User Deleted",status:200,data:{result}});
 })
 export default router

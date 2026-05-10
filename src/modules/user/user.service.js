@@ -115,3 +115,19 @@ export const updateUser = async (id, updatedData) => {
     throw err;
   }
 };
+
+export const deleteUser = async (id) => {
+  const session = await mongoose.startSession();
+  session.startTransaction();
+  try {
+   //const id_obj= new mongoose.Types.ObjectId(id)
+    const deletedUser = await userModel.findByIdAndDelete(id)
+    if (!deletedUser) throw NotFoundException({ message: "User not found" });
+    await session.commitTransaction();
+    return deletedUser;
+  } catch (err) {
+    await session.abortTransaction();
+    await session.endSession();
+    throw err;
+  }
+};
