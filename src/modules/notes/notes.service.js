@@ -76,3 +76,17 @@ export const replaceNote = async (id, body, notesId) => {
     throw err;
   }
 };
+
+export const updateAllTitles = async (id, body) => {
+  const { newTitle} = body;
+  try {
+    const found_notes = await notesModel.updateMany({userId:id},{$set:{title:newTitle}});
+    console.log(found_notes)
+    if (found_notes.matchedCount==0) {
+      throw NotFoundException({ message: "No note found" });
+    }
+
+  } catch (err) {
+    throw err;
+  }
+};
