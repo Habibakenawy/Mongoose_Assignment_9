@@ -90,3 +90,21 @@ export const updateAllTitles = async (id, body) => {
     throw err;
   }
 };
+
+export const deleteNote = async (id, notesId) => {
+  try {
+    const found_note = await notesModel.findById(notesId);
+    if (!found_note) {
+      throw NotFoundException({ message: "Note not found" });
+    }
+
+    if (found_note.userId.toString()===id) {
+     const note = await notesModel.findByIdAndDelete(notesId);
+      return note;
+    } else {
+      throw UnauthorizedException({ message: "You are not the owner" });
+    }
+  } catch (err) {
+    throw err;
+  }
+};
