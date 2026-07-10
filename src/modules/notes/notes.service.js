@@ -156,3 +156,15 @@ export const getNoteByContent = async (id, query) => {
     throw err;
   }
 };
+
+
+export const getAllNotes = async (id) =>{
+const notes = await notesModel
+.find({userId:id}) // 1. Filter for the logged-in user
+.select('title userId createdAt') // 2. Select only these fields from the Note document
+.populate({
+  path:"userId", // 3. Populate the referenced user document
+  select:"email -_id" // 4. Select only the email from the user (and explicitly exclude their _id if needed)
+})
+return notes;
+}
