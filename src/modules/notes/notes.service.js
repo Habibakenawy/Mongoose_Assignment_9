@@ -108,3 +108,17 @@ export const deleteNote = async (id, notesId) => {
     throw err;
   }
 };
+
+//offset for pagination = (page-1) * (size or limit)
+
+
+
+export const getNotes = async (id,query) =>{
+let {page,limit} = query;
+page = parseInt(page) || 1;
+limit = parseInt(limit)|| 2;
+const offset = (page-1)*limit;
+const notes = await notesModel.find({userId:id}).skip(offset).limit(limit).sort({createdAt:-1});
+return notes;
+
+}
