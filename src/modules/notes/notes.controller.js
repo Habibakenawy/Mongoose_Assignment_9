@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { successResponse } from "../../common/utils/response/success.response.js";
 import { authMiddleware } from "../../middleware/auth.middleware.js";
-import { createNote,updateNote,replaceNote,updateAllTitles,deleteNote,getNotes, getNoteById,getNoteByContent,getAllNotes,getAggregatedNotes} from "./notes.service.js";
+import { createNote,updateNote,replaceNote,updateAllTitles,deleteNote,getNotes, getNoteById,getNoteByContent,getAllNotes,getAggregatedNotes,deleteNotes} from "./notes.service.js";
 const router=Router()
 
 
@@ -35,6 +35,10 @@ const result= await getAggregatedNotes(req.user.userId,req.query);
 return successResponse({res,message:"Notes found",status:200,data:{result}});
 })
 
+router.delete('/',authMiddleware,async(req,res,next)=>{
+const result= await deleteNotes(req.user.userId);
+return successResponse({res,message:"Deleted",status:200,data:{result}});
+})
 
 router.patch('/:noteId',authMiddleware,async(req,res,next)=>{
 const result= await updateNote(req.user.userId,req.body,req.params.noteId);

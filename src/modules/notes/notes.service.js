@@ -204,3 +204,11 @@ const notes = await notesModel.aggregate(
 )
 return notes;
 }
+
+export const deleteNotes = async (id) => {
+  try {
+    const deletNotes = await notesModel.deleteMany({userId:id});
+  } catch (err) {
+    throw err;
+  }
+};
