@@ -1,0 +1,600 @@
+{
+  "info": {
+    "_postman_id": "96a9c84f-d332-4500-a120-5414e76b6ffa",
+    "name": "Mongoose Assignment 9",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "29456401"
+  },
+  "item": [
+    {
+      "name": "users and notes",
+      "item": [
+        {
+          "name": "signup",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n     \"name\":\"Habiba\",\r\n    \"email\":\"habibakenawy990@gmail.com\",\r\n    \"Password\":\"blaahhhhhh\",\r\n    \"Phone\":\"01098034817\",\r\n    \"age\":23\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:3000/users/signup",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "3000",
+              "path": [
+                "users",
+                "signup"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "login",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n     \"email\":\"habibakenawy99@gmail.com\",\r\n    \"Password\":\"blaahhhhhh\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:3000/users/login",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "3000",
+              "path": [
+                "users",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "updateUser",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "token",
+                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OWZhNDNjZTU1ZjE3NzViOGEzNGYyMjUiLCJpYXQiOjE3NzgzMzY4NjIsImV4cCI6MTc3ODM0MDQ2Mn0.I9jJjGQbHdqwKA4eNeqMJXAMIYds7xHFIHHhQuPHj1Q",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\":\"updated\",\r\n    \"email\":\"habibakenawy99@gmail.com\",\r\n    \"age\":30\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:3000/users",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "3000",
+              "path": [
+                "users"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "deleteUser",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "token",
+                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OWZmNDg1ZWE1ZGIzMzRiZGEyYWE5YWUiLCJpYXQiOjE3Nzg0MTM3NTYsImV4cCI6MTc3ODQxNzM1Nn0.IxwquqK5x-bT3OyQ1Hki390WYZ2GCCFHBsu-n0Cbh90",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:3000/users",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "3000",
+              "path": [
+                "users"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getUserData",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "token",
+                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OWZhNDNjZTU1ZjE3NzViOGEzNGYyMjUiLCJpYXQiOjE3Nzg0MTQ2MDQsImV4cCI6MTc3ODQxODIwNH0.XIR81FVq8UWRGP1LT-ulrCd9oBgVic9fbum-6p7R7L8",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://127.0.0.1:3000/users",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "3000",
+              "path": [
+                "users"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "createNote",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "token",
+                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2YTAwODYyZDZiMGMxZTAyZDQyZGRkNDciLCJpYXQiOjE3ODM2OTU0MzMsImV4cCI6MTc4MzY5OTAzM30.a7XuPFpRxiUJ94F91NfCs_J1-bOyr5qaWBbwMDve_sk",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"title\":\"Note1\",\r\n    \"content\":\"bla\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:3000/notes",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "3000",
+              "path": [
+                "notes"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "updateNote",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "token",
+                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2YTAwODYyZDZiMGMxZTAyZDQyZGRkNDciLCJpYXQiOjE3Nzg0MTkyODEsImV4cCI6MTc3ODQyMjg4MX0.PFtgRMrocZ3juqxuiyj_-GJ4eG0p6V719ftpdczriNY",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"title\":\"updated\",\r\n    \"content\":\"update content\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:3000/notes/6a007fd42f3d022694e75e63",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "3000",
+              "path": [
+                "notes",
+                "6a007fd42f3d022694e75e63"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "replaceNote",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "token",
+                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2YTAwODYyZDZiMGMxZTAyZDQyZGRkNDciLCJpYXQiOjE3ODMxNzIwMDcsImV4cCI6MTc4MzE3NTYwN30.CVEgesPrkXxU9J7QPXyDkgyF6IWUzY8qRpvHErllDno",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"title\":\"updated 2\",\r\n    \"content\":\"update content\",\r\n\t\t\"userId\":\"6a00862d6b0c1e02d42ddd47\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:3000/notes/replace/6a490f29d161d4b3f8da12a7",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "3000",
+              "path": [
+                "notes",
+                "replace",
+                "6a490f29d161d4b3f8da12a7"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "updateNotes",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "token",
+                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2YTQ5MWY5ZjBkOGIyOWFiMjcwY2Y2MTYiLCJpYXQiOjE3ODMxNzcxNDQsImV4cCI6MTc4MzE4MDc0NH0.2qXlSG6CwWg0mrPyhrczsKNOWG2OEF5TG300kBzwW2M",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"newTitle\":\"updated bla\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:3000/notes/all",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "3000",
+              "path": [
+                "notes",
+                "all"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "deleteNote",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "token",
+                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2YTAwODYyZDZiMGMxZTAyZDQyZGRkNDciLCJpYXQiOjE3ODMyNzkzMjUsImV4cCI6MTc4MzI4MjkyNX0.dm4PThUSpAKrQGevV6oJEdpKdFyeZzPhLsvxDU82JbU",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:3000/notes/6a491f680d8b29ab270cf614",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "3000",
+              "path": [
+                "notes",
+                "6a491f680d8b29ab270cf614"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getNotes",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "token",
+                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2YTAwODYyZDZiMGMxZTAyZDQyZGRkNDciLCJpYXQiOjE3ODM2OTU0MzMsImV4cCI6MTc4MzY5OTAzM30.a7XuPFpRxiUJ94F91NfCs_J1-bOyr5qaWBbwMDve_sk",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://127.0.0.1:3000/notes/paginate-sort?page=2&limit=3",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "3000",
+              "path": [
+                "notes",
+                "paginate-sort"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "2"
+                },
+                {
+                  "key": "limit",
+                  "value": "3"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getNoteById",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "token",
+                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2YTAwODYyZDZiMGMxZTAyZDQyZGRkNDciLCJpYXQiOjE3ODM2OTU0MzMsImV4cCI6MTc4MzY5OTAzM30.a7XuPFpRxiUJ94F91NfCs_J1-bOyr5qaWBbwMDve_sk",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:3000/notes/6a4ab9461fa8964f005ac5a7",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "3000",
+              "path": [
+                "notes",
+                "6a4ab9461fa8964f005ac5a7"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getNoteByContent",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "token",
+                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2YTAwODYyZDZiMGMxZTAyZDQyZGRkNDciLCJpYXQiOjE3ODM2OTU0MzMsImV4cCI6MTc4MzY5OTAzM30.a7XuPFpRxiUJ94F91NfCs_J1-bOyr5qaWBbwMDve_sk",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:3000/notes/note-by-content?content=bla",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "3000",
+              "path": [
+                "notes",
+                "note-by-content"
+              ],
+              "query": [
+                {
+                  "key": "content",
+                  "value": "bla"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getJoinedNotes",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "token",
+                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2YTAwODYyZDZiMGMxZTAyZDQyZGRkNDciLCJpYXQiOjE3ODM2OTkxNjIsImV4cCI6MTc4MzcwMjc2Mn0.Y2B7d7TuHU0wB-pJ9CbDRJaKTTll9dTCVnJ5AKwM-mw",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://127.0.0.1:3000/notes/note-with-user",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "3000",
+              "path": [
+                "notes",
+                "note-with-user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getAggregatedNotes",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "token",
+                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2YTAwODYyZDZiMGMxZTAyZDQyZGRkNDciLCJpYXQiOjE3ODM2OTkxNjIsImV4cCI6MTc4MzcwMjc2Mn0.Y2B7d7TuHU0wB-pJ9CbDRJaKTTll9dTCVnJ5AKwM-mw",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://127.0.0.1:3000/notes/aggregate?title=Note1",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "3000",
+              "path": [
+                "notes",
+                "aggregate"
+              ],
+              "query": [
+                {
+                  "key": "title",
+                  "value": "Note1"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "deleteAllNotes",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "token",
+                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2YTAwODYyZDZiMGMxZTAyZDQyZGRkNDciLCJpYXQiOjE3ODM2OTkxNjIsImV4cCI6MTc4MzcwMjc2Mn0.Y2B7d7TuHU0wB-pJ9CbDRJaKTTll9dTCVnJ5AKwM-mw",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://127.0.0.1:3000/notes/aggregate?title=Note1",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "3000",
+              "path": [
+                "notes",
+                "aggregate"
+              ],
+              "query": [
+                {
+                  "key": "title",
+                  "value": "Note1"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
