@@ -138,3 +138,21 @@ export const getNoteById = async (id, notesId) => {
     throw err;
   }
 };
+
+export const getNoteByContent = async (id, query) => {
+  try {
+    const {content} = query;
+    const found_note = await notesModel.findOne({content:content});
+    if (!found_note) {
+      throw NotFoundException({ message: "Note not found" });
+    }
+
+    if (found_note.userId.toString()===id) {
+      return found_note;
+    } else {
+      throw UnauthorizedException({ message: "You are not the owner" });
+    }
+  } catch (err) {
+    throw err;
+  }
+};
