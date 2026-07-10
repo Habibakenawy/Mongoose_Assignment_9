@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { successResponse } from "../../common/utils/response/success.response.js";
 import { authMiddleware } from "../../middleware/auth.middleware.js";
-import { createNote,updateNote,replaceNote,updateAllTitles,deleteNote,getNotes } from "./notes.service.js";
+import { createNote,updateNote,replaceNote,updateAllTitles,deleteNote,getNotes, getNoteById } from "./notes.service.js";
 const router=Router()
 
 
@@ -36,6 +36,11 @@ return successResponse({res,message:"Note replaced",status:200,data:{result}});
 router.delete('/:noteId',authMiddleware,async(req,res,next)=>{
 const result= await deleteNote(req.user.userId,req.params.noteId);
 return successResponse({res,message:"Note deleted",status:200,data:{result}});
+})
+
+router.get('/:id',authMiddleware,async(req,res,next)=>{
+const result= await getNoteById(req.user.userId,req.params.id);
+return successResponse({res,message:"Note found",status:200,data:{result}});
 })
 
 
