@@ -168,3 +168,39 @@ const notes = await notesModel
 })
 return notes;
 }
+
+export const getAggregatedNotes = async (id,query) =>{
+  const {title} = query ;
+
+  // 1. Always filter by the logged-in user
+  const matchCriteria = { 
+    userId: new mongoose.Types.ObjectId(id) 
+  };
+
+  // 2. Only add the title filter if a title search was actually requested
+  if (title) {
+    matchCriteria.title = title;
+  }
+const notes = await notesModel.aggregate(
+[
+  // Stage 1: Filter by user and optional title query
+  {$match: matchCriteria},
+  // Stage 2: Join with the users collection
+  {$lookup:{from:"UserData",localField:"userId",foreignField:"_id",as: "user"}},
+  // Stage 3: Flatten the 'user' array into an object
+  { $unwind: "$user" },
+  // Stage 4: Project only the required fields 
+    {
+      $project: {
+        _id: 0,
+        title: 1,
+        userId: 1,
+        createdAt: 1,
+        "user.name": 1,
+        "user.email": 1
+      }
+    }
+]
+)
+return notes;
+}

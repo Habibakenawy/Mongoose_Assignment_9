@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { successResponse } from "../../common/utils/response/success.response.js";
 import { authMiddleware } from "../../middleware/auth.middleware.js";
-import { createNote,updateNote,replaceNote,updateAllTitles,deleteNote,getNotes, getNoteById,getNoteByContent,getAllNotes} from "./notes.service.js";
+import { createNote,updateNote,replaceNote,updateAllTitles,deleteNote,getNotes, getNoteById,getNoteByContent,getAllNotes,getAggregatedNotes} from "./notes.service.js";
 const router=Router()
 
 
@@ -27,6 +27,11 @@ return successResponse({res,message:"Notes found",status:200,data:{result}});
 
 router.get('/note-with-user',authMiddleware,async(req,res,next)=>{
 const result= await getAllNotes(req.user.userId);
+return successResponse({res,message:"Notes found",status:200,data:{result}});
+})
+
+router.get('/aggregate',authMiddleware,async(req,res,next)=>{
+const result= await getAggregatedNotes(req.user.userId,req.query);
 return successResponse({res,message:"Notes found",status:200,data:{result}});
 })
 
